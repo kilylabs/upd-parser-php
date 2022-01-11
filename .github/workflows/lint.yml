@@ -1,4 +1,4 @@
-name: Format (PHP)
+name: PHP-CS-FIXER
 on: [push, pull_request]
 jobs:
     php-cs-fixer:
@@ -14,4 +14,4 @@ jobs:
             - name: Autocommiting php-cs-fixer fixes
               uses: stefanzweifel/git-auto-commit-action@v4
               with:
-                  commit_message: fix(style): PHP-CS-Fixer changes
+                commit_message: "fix(style): PHP-CS-Fixer changes"
