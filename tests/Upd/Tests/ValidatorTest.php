@@ -36,10 +36,10 @@ class ValidatorTest extends TestCase
 
     public function testValidateFile(): void
     {
-        $this->assertTrue(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml',Upd::VER_5_01));
-        $this->assertTrue(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml',Upd::VER_5_01_03));
-        $this->assertFalse(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml',Upd::VER_5_01_02));
-        $this->assertFalse(Validator::validateFile(__DIR__.'/../../Assets/bad_upd.xml',Upd::VER_5_01));
+        $this->assertTrue(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml', Upd::VER_5_01));
+        $this->assertTrue(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml', Upd::VER_5_01_03));
+        $this->assertFalse(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml', Upd::VER_5_01_02));
+        $this->assertFalse(Validator::validateFile(__DIR__.'/../../Assets/bad_upd.xml', Upd::VER_5_01));
     }
 
     /**
@@ -49,7 +49,7 @@ class ValidatorTest extends TestCase
     public function testValidateFile1(): void
     {
         $this->expectException(ValidationException::class);
-        Validator::validateFile("__NONEXISTENT__",Upd::VER_5_01);
+        Validator::validateFile("__NONEXISTENT__", Upd::VER_5_01);
     }
 
     /**
@@ -58,10 +58,10 @@ class ValidatorTest extends TestCase
 
     public function testValidateString(): void
     {
-        $this->assertTrue(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'),Upd::VER_5_01));
-        $this->assertTrue(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'),Upd::VER_5_01_03));
-        $this->assertFalse(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'),Upd::VER_5_01_02));
-        $this->assertFalse(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/bad_upd.xml'),Upd::VER_5_01));
+        $this->assertTrue(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'), Upd::VER_5_01));
+        $this->assertTrue(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'), Upd::VER_5_01_03));
+        $this->assertFalse(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'), Upd::VER_5_01_02));
+        $this->assertFalse(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/bad_upd.xml'), Upd::VER_5_01));
     }
 
     /**
@@ -71,6 +71,6 @@ class ValidatorTest extends TestCase
     public function testValidateString1(): void
     {
         $this->expectException(ValidationException::class);
-        Validator::validateString("",Upd::VER_5_01);
+        Validator::validateString("", Upd::VER_5_01);
     }
 }
