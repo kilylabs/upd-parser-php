@@ -1,0 +1,36 @@
+{
+  "name":         "kilylabs/upd-parser-php",
+  "description":  "Генератор и парсер УПД формате XML",
+  "keywords":     [
+    "upd",
+    "nalog",
+    "ON_NSCHFDOPPR",
+    "УПД",
+    "php"
+  ],
+  "type":         "library",
+  "license":      "MIT",
+  "autoload":     {
+    "psr-4": {
+      "Kily\\Tools\\Upd\\": "src/Upd"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kily\\Tools\\Upd\\": "tests/Upd/Tests"
+    }
+  },
+  "authors":      [
+    {
+      "name":  "Alexander Bogdanov",
+      "email": "ab@dev.kily.ru"
+    }
+  ],
+  "require":      {
+    "guzzlehttp/guzzle": "^7.2",
+    "laravie/parser": "^2.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.1"
+  }
+}
