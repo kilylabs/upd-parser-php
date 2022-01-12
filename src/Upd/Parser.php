@@ -11,21 +11,21 @@ class Parser
 {
     use Instansable;
 
-    public static function parseString(string $source)
+    public static function parseString(string $source,bool $validate = true, string $ver = Upd::VER_5_01)
     {
         if (!trim($source)) {
             throw new ValidationException('It seems input string is empty...');
         }
-        return static::getInstance()->parse($source);
+        return static::getInstance()->parse($source,$validate,$ver);
     }
 
-    public static function parseFile(string $file)
+    public static function parseFile(string $file,bool $validate = true, string $ver = Upd::VER_5_01)
     {
         if (!trim($file)) {
             throw new ValidationException("It seems file {$file} does not exist...");
         }
         if (file_exists($file) && is_readable($file)) {
-            return static::getInstance()->parse(file_get_contents($file));
+            return static::getInstance()->parse(file_get_contents($file), $validate, $ver);
         } else {
             throw new ValidationException("It seems file {$file} does not exist or is not readable...");
         }
