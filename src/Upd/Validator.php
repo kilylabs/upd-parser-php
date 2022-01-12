@@ -7,9 +7,12 @@ namespace Kily\Tools\Upd;
 use DOMDocument;
 use Kily\Tools\Upd\Upd;
 use Kily\Tools\Upd\Exception\ValidationException;
+use Kily\Tools\Upd\Traits\Instansable;
 
 class Validator
 {
+    use Instansable;
+
     protected const VERSIONMAP = [
         Upd::VER_5_01_02=>'ON_NSCHFDOPPOK_1_997_02_05_01_02.xsd',
         Upd::VER_5_01_03=>'ON_NSCHFDOPPR_1_997_01_05_01_03.xsd',
@@ -21,7 +24,7 @@ class Validator
         if (!trim($source)) {
             throw new ValidationException('It seems input string is empty...');
         }
-        return static::validate($source, $ver);
+        return static::getInstance()->validate($source,$ver);
     }
 
     public static function validateFile(string $file, string $ver): bool
@@ -30,15 +33,15 @@ class Validator
             throw new ValidationException("It seems file {$file} does not exist...");
         }
         if (file_exists($file) && is_readable($file)) {
-            return static::validate($file, $ver, true);
+            return static::getInstance()->validate($file, $ver, true);
         } else {
             throw new ValidationException("It seems file {$file} does not exist or is not readable...");
         }
     }
 
-    protected static function validate(string $source, string $ver, bool $is_file = false): bool
+    public function validate(string $source, string $ver, bool $is_file = false): bool
     {
-        if (!static::validateVersion($ver)) {
+        if (!$this->validateVersion($ver)) {
             throw new ValidationException('Allowed versions are: '.implode('|', array_keys(static::VERSIONMAP)));
         }
         $xsd_path = implode(DIRECTORY_SEPARATOR, [__DIR__,'assets',static::VERSIONMAP[$ver]]);
@@ -53,7 +56,7 @@ class Validator
         return $ret;
     }
 
-    protected static function validateVersion(string $ver): bool
+    protected function validateVersion(string $ver): bool
     {
         return in_array($ver, array_keys(static::VERSIONMAP));
     }
