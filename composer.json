@@ -1,12 +1,15 @@
 {
   "name":         "kilylabs/upd-parser-php",
-  "description":  "Генератор и парсер УПД формате XML",
+  "description":  "Парсер, валидатор и генератор УПД формате XML",
   "keywords":     [
     "upd",
     "nalog",
     "ON_NSCHFDOPPR",
     "УПД",
-    "php"
+    "php",
+    "generator",
+    "validator",
+    "parser"
   ],
   "type":         "library",
   "license":      "MIT",
