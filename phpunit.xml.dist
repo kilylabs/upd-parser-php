@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/Bootstrap.php"
+    testdox="true"
     colors="true"
     processIsolation="false"
     stopOnFailure="false"
@@ -14,8 +15,11 @@
         <!--<server name="ALLOW_UNSAFE_OPERATIONS" value="true" />-->
     </php>
     <testsuites>
-        <testsuite name="main">
-            <directory>tests/Upd/Tests</directory>
+        <testsuite name="unit">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>tests/integration</directory>
         </testsuite>
     </testsuites>
     <filter>

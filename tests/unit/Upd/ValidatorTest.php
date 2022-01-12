@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Kily\Tools\Upd;
+namespace Tests\Kily\Tools\Upd;
 
 use Kily\Tools\Upd\Validator;
 use Kily\Tools\Upd\Upd;
@@ -8,9 +8,9 @@ use Kily\Tools\Upd\Exception\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class GostTest.
+ * Class ValidatorTest
  *
- * @covers \Kily\Payment\QR\Gost
+ * @covers \Kily\Tools\Upd\Validator
  */
 class ValidatorTest extends TestCase
 {
@@ -34,7 +34,7 @@ class ValidatorTest extends TestCase
      * @covers Kily\Tools\Upd\Validator::validateFile
      */
 
-    public function testValidateFile(): void
+    public function test_file_validator_works(): void
     {
         $this->assertTrue(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml', Upd::VER_5_01));
         $this->assertTrue(Validator::validateFile(__DIR__.'/../../Assets/good_upd.xml', Upd::VER_5_01_03));
@@ -46,7 +46,7 @@ class ValidatorTest extends TestCase
      * @covers Kily\Tools\Upd\Validator::validateFile
      */
 
-    public function testValidateFile1(): void
+    public function test_file_validator_throws(): void
     {
         $this->expectException(ValidationException::class);
         Validator::validateFile("__NONEXISTENT__", Upd::VER_5_01);
@@ -56,7 +56,7 @@ class ValidatorTest extends TestCase
      * @covers Kily\Tools\Upd\Validator::validateString
      */
 
-    public function testValidateString(): void
+    public function test_string_validator_works(): void
     {
         $this->assertTrue(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'), Upd::VER_5_01));
         $this->assertTrue(Validator::validateString(file_get_contents(__DIR__.'/../../Assets/good_upd.xml'), Upd::VER_5_01_03));
@@ -68,7 +68,7 @@ class ValidatorTest extends TestCase
      * @covers Kily\Tools\Upd\Validator::validateString
      */
 
-    public function testValidateString1(): void
+    public function test_string_validator_throws(): void
     {
         $this->expectException(ValidationException::class);
         Validator::validateString("", Upd::VER_5_01);
