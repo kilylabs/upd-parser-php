@@ -36,9 +36,9 @@ class GeneratorTest extends TestCase
 
     public function test_file_generator_works(): void
     {
-        $temp = tempnam(sys_get_temp_dir(),'phpunit_');
+        $temp = tempnam(sys_get_temp_dir(), 'phpunit_');
         $arr = require(__DIR__.'/../../Assets/good_upd_parsed_array.php');
-        $this->assertTrue((bool)Generator::generateFile($arr,$temp));
+        $this->assertTrue((bool)Generator::generateFile($arr, $temp));
     }
 
     /**
@@ -50,5 +50,4 @@ class GeneratorTest extends TestCase
         $arr = require(__DIR__.'/../../Assets/good_upd_parsed_array.php');
         $this->assertIsString(Generator::generateString($arr));
     }
-
 }

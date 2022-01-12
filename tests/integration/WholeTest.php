@@ -35,9 +35,7 @@ class WholeTest extends TestCase
     {
         $arr = Parser::parseFile(__DIR__.'/../Assets/good_upd_with_km.xml');
         $xml = Generator::generateString($arr);
-        $ret = Validator::validateString($xml,Upd::VER_5_01);
+        $ret = Validator::validateString($xml, Upd::VER_5_01);
         $this->assertTrue($ret);
     }
-
-
 }

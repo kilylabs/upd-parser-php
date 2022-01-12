@@ -24,7 +24,7 @@ class Validator
         if (!trim($source)) {
             throw new ValidationException('It seems input string is empty...');
         }
-        return static::getInstance()->validate($source,$ver);
+        return static::getInstance()->validate($source, $ver);
     }
 
     public static function validateFile(string $file, string $ver): bool

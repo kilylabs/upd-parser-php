@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Kily\Tools\Upd;
@@ -10,14 +11,16 @@ class Parser
 {
     use Instansable;
 
-    public static function parseString(string $source) {
+    public static function parseString(string $source)
+    {
         if (!trim($source)) {
             throw new ValidationException('It seems input string is empty...');
         }
         return static::getInstance()->parse($source);
     }
 
-    public static function parseFile(string $file) {
+    public static function parseFile(string $file)
+    {
         if (!trim($file)) {
             throw new ValidationException("It seems file {$file} does not exist...");
         }
@@ -28,20 +31,22 @@ class Parser
         }
     }
 
-    public function parse(string $source,bool $validate = true,string $ver = Upd::VER_5_01) {
-        if($validate && !Validator::validateString($source,$ver)) {
+    public function parse(string $source, bool $validate = true, string $ver = Upd::VER_5_01)
+    {
+        if ($validate && !Validator::validateString($source, $ver)) {
             throw new ValidationException("It seems it isn't valid UPD xml format");
         }
         $obj = simplexml_load_string($source, null, LIBXML_NOCDATA);
-        $arr = json_decode(json_encode($obj), true );
+        $arr = json_decode(json_encode($obj), true);
         $this->fixArray($arr);
         return $arr;
     }
 
-    protected function fixArray(array &$array) {
-        $array_walk_recursive_array = function(array &$array, callable $callback) use(&$array_walk_recursive_array) {
+    protected function fixArray(array &$array)
+    {
+        $array_walk_recursive_array = function (array &$array, callable $callback) use (&$array_walk_recursive_array) {
             foreach ($array as $k => &$v) {
-                if($k == '@attributes') {
+                if ($k == '@attributes') {
                     $array['_attributes'] = $v;
                     unset($array[$k]);
                 }
@@ -53,8 +58,7 @@ class Parser
             }
         };
 
-        $array_walk_recursive_array($array,function($v,$k,$array) {
+        $array_walk_recursive_array($array, function ($v, $k, $array) {
         });
     }
-
 }
