@@ -40,5 +40,4 @@ class Parser
         $arr = json_decode(json_encode($obj), true);
         return $arr;
     }
-
 }
