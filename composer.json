@@ -9,7 +9,10 @@
     "php",
     "generator",
     "validator",
-    "parser"
+    "parser",
+    "диадок",
+    "diadoc",
+    "эдо"
   ],
   "type":         "library",
   "license":      "MIT",
