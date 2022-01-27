@@ -38,27 +38,7 @@ class Parser
         }
         $obj = simplexml_load_string($source, null, LIBXML_NOCDATA);
         $arr = json_decode(json_encode($obj), true);
-        $this->fixArray($arr);
         return $arr;
     }
 
-    protected function fixArray(array &$array)
-    {
-        $array_walk_recursive_array = function (array &$array, callable $callback) use (&$array_walk_recursive_array) {
-            foreach ($array as $k => &$v) {
-                if ($k == '@attributes') {
-                    $array['_attributes'] = $v;
-                    unset($array[$k]);
-                }
-                if (is_array($v)) {
-                    $array_walk_recursive_array($v, $callback);
-                } else {
-                    $callback($v, $k, $array);
-                }
-            }
-        };
-
-        $array_walk_recursive_array($array, function ($v, $k, $array) {
-        });
-    }
 }
